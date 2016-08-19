@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Divs Count</title>
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px;
+            background: white;
+        }
+        
+        .card-type {
+            width: 32px;
+        }
+        
+        .card-played {
+            visibility: collapse;
+        }
+        
+        .status {
+            width: 16px;
+            height: 16px;
+            background-color: red;
+            display: inline-block;
+        }
+        
+        .code-injected {
+            background-color: green;
+        }
+        
+        .cards tr:nth-child(even) {
+            background: #CCC
+        }
+        
+        .cards tr:nth-child(odd) {
+            background: #c7d09a
+        }
+        
+        .cards td {
+            padding: 5px;
+        }
+        
+        .cards {
+            border-spacing: 0px;
+        }
+    </style>
+    <script src="./dist/popup.js"></script>
+</head>
+
+<body ng-app="CardsCounter" ng-controller="MainController as ctrl">
+    <button ng-click="ctrl.clearCards()">clear</button>
+    <button ng-if="!ctrl.codeInjected" ng-click="ctrl.injectCardsCounter()">inject</button>
+    <button ng-if="ctrl.codeInjected" ng-click="ctrl.deleteCardsWatcher()">Delete</button>
+    <label class="status" ng-class="{'code-injected':ctrl.codeInjected}"></label>
+    <table class="cards">
+        <tbody>
+            <tr>
+                <th>
+                    <img class="card-type" src="images/heart.png" />
+                </th>
+                <td ng-repeat="card in ctrl.cards.heart ">
+                    <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <img class="card-type" src="images/club.png" />
+                </th>
+                <td ng-repeat="card in ctrl.cards.spade ">
+                    <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
+
+                </td>
+            </tr>
+
+            <tr>
+                <th>
+                    <img class="card-type" src="images/spade.png" />
+                </th>
+                <td ng-repeat="card in ctrl.cards.club ">
+                    <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <img class="card-type" src="images/diamond.png" />
+                </th>
+                <td ng-repeat="card in ctrl.cards.diamond ">
+                    <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

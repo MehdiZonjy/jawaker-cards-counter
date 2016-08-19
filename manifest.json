@@ -1,0 +1,20 @@
+{
+  "name": "Jawaker Card Counter",
+  "description": "Counts which cards hasn't been played yet in Jawaker Game",
+  "version": "0.5",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
+   "browser_action": {
+    "default_title": "Count Cards",
+    "default_icon": "./images/icon.png",
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    "img/*.png"
+  ],
+  "manifest_version": 2
+}
