@@ -1,6 +1,6 @@
 
 var $ = require('jquery');
-const events =require('./events');
+const events = require('./events');
 console.log("cards-counter script added");
 
 
@@ -69,7 +69,10 @@ console.log("cards-counter script added");
                     case events.remove: {
                         sendResponse({ message: 'removed' });
                         chrome.runtime.onMessage.removeListener(eventsHandler);
-
+                        break;
+                    }
+                    case events.cardsInHand: {
+                        sendResponse(getCardsInHand());
                         break;
                     }
                 }
@@ -111,7 +114,7 @@ console.log("cards-counter script added");
                 var card = extractCardType(classes, 'diamond') || extractCardType(classes, 'club') || extractCardType(classes, 'heart') || extractCardType(classes, 'spade');
                 var cardType = card.split('-')[0];
                 //if the card hasn't been counted yet, then add it'
-                if(cardsHistory[cardType].indexOf(card)<0)
+                if (cardsHistory[cardType].indexOf(card) < 0)
                     cardsHistory[cardType].push(card);
             });
 
@@ -140,6 +143,29 @@ console.log("cards-counter script added");
      */
     function validateRequest(request) {
         return request && request.origin == 'cards-counter' && request.action;
+    }
+    /**
+     * gets the cards player holding in hand 
+     * 
+     * @returns
+     */
+    function getCardsInHand() {
+        const cardsInHand = {
+            spade: [],
+            diamond: [],
+            club: [],
+            heart: []
+        };
+        $(".hand.rotate-bottom.ui-droppable .card.face-up").each((key, cardDOM) => {
+            const classes = $(cardDOM).attr('class');
+            var card = extractCardType(classes, 'diamond') || extractCardType(classes, 'club') || extractCardType(classes, 'heart') || extractCardType(classes, 'spade');
+            var cardType = card.split('-')[0];
+            if (cardsInHand[cardType].indexOf(card) < 0)
+                cardsInHand[cardType].push(card);
+        });
+        console.log('cards in hand');
+        console.log(cardsInHand);
+        return cardsInHand;
     }
 
 })();

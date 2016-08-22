@@ -45,6 +45,9 @@
         .cards {
             border-spacing: 0px;
         }
+        .card-in-hand{
+            background-color:#50b72f;
+        }
     </style>
     <script src="./dist/popup.js"></script>
 </head>
@@ -60,7 +63,7 @@
                 <th>
                     <img class="card-type" src="images/heart.png" />
                 </th>
-                <td ng-repeat="card in ctrl.cards.heart ">
+                <td ng-class="{'card-in-hand':card.inHand}" ng-repeat="card in ctrl.cards.heart ">
                     <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
                 </td>
             </tr>
@@ -68,7 +71,7 @@
                 <th>
                     <img class="card-type" src="images/club.png" />
                 </th>
-                <td ng-repeat="card in ctrl.cards.spade ">
+                <td ng-class="{'card-in-hand':card.inHand}"  ng-repeat="card in ctrl.cards.spade ">
                     <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
 
                 </td>
@@ -78,7 +81,7 @@
                 <th>
                     <img class="card-type" src="images/spade.png" />
                 </th>
-                <td ng-repeat="card in ctrl.cards.club ">
+                <td ng-class="{'card-in-hand':card.inHand}" ng-repeat="card in ctrl.cards.club ">
                     <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
                 </td>
             </tr>
@@ -86,7 +89,7 @@
                 <th>
                     <img class="card-type" src="images/diamond.png" />
                 </th>
-                <td ng-repeat="card in ctrl.cards.diamond ">
+                <td ng-class="{'card-in-hand':card.inHand}" ng-repeat="card in ctrl.cards.diamond ">
                     <span ng-class="{'card-played':card.played}"> {{card.name | clearCard}}</span>
                 </td>
             </tr>

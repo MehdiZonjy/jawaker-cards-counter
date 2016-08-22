@@ -1,5 +1,5 @@
 const angular = require('angular');
-const events =require('./events');
+const events = require('./events');
 //checks
 
 /**
@@ -25,7 +25,8 @@ function findObjectIndexWithProperty(array, prop, value) {
 function createCardJSON(name) {
     return {
         name: name,
-        played: false
+        played: false,
+        inHand: false
     };
 }
 
@@ -58,10 +59,33 @@ function updatePlayedCards(cards, playedCards) {
         const index = findObjectIndexWithProperty(cards, 'name', v);
         if (index > -1) {
             cards[index].played = true;
+            cards[index].inHand = false;
+
         }
     });
     return cards;
 }
+
+
+/**
+ * given a set1 of cards and a set2 of cards in hand, updates which cards the player is holding in hand
+ * given
+ * @param {any} cards
+ * @param {any} playedCards
+ * @returns
+ */
+function updateCardsInHand(cards, cardsInHand) {
+
+    cardsInHand.forEach((v) => {
+        const index = findObjectIndexWithProperty(cards, 'name', v);
+        if (index > -1) {
+            cards[index].inHand = true;
+            cards[index].played = false;
+        }
+    });
+    return cards;
+}
+
 /**
  * returns a valid request message 
  * 
@@ -109,6 +133,20 @@ angular.module('CardsCounter', []).controller('MainController', function ($scope
         self.cards.diamond = updatePlayedCards(self.cards.diamond, playedCards.diamond);
         $scope.$apply();
     };
+
+
+    //updats which cards have been played 
+    self.updateCardsInHand = (cardsInHand) => {
+        if (!cardsInHand) return;
+        self.cards.spade = updateCardsInHand(self.cards.spade, cardsInHand.spade);
+        self.cards.heart = updateCardsInHand(self.cards.heart, cardsInHand.heart);
+        self.cards.club = updateCardsInHand(self.cards.club, cardsInHand.club);
+        self.cards.diamond = updateCardsInHand(self.cards.diamond, cardsInHand.diamond);
+        $scope.$apply();
+    };
+
+
+
     //clears played cards and reset counted-cards inside the injected code 
     self.clearCards = () => {
         self.initCards();
@@ -151,7 +189,7 @@ angular.module('CardsCounter', []).controller('MainController', function ($scope
     verifyCodeInjected();
     self.initCards();
     sendMessage(createRequest(events.getCards), self.updateUnplayedCards);
-
+    sendMessage(createRequest(events.cardsInHand), self.updateCardsInHand);
 
 })
 

@@ -2,5 +2,6 @@ module.exports={
     getCards:'get-cards',
     clearCards:'clear-cards',
     echo:'echo',
-    remove:'remove'
+    remove:'remove',
+    cardsInHand:'cards-in-hand'
 };
