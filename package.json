@@ -9,15 +9,19 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build":"./node_modules/.bin/webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build":"./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MehdiZonjy/jawaker-cards-counter"
   },
   "keywords": [
     "js",
     "Jawaker",
     "Trix",
     "cards",
-    "counter"
+    "counter",
+    "chrome extension"
   ],
   "author": "Mehdi Zonjy",
   "license": "ISC"
