@@ -1,4 +1,8 @@
+
+For further information please refer to my [Blog Post](http7://mzmuse.com/blog/jawaker-cards-counter)
+
 # Jawaker Cards Counter
+
 
 Jawaker Cards Counter is a Chrome Extension that counts played cards inside [Jawaker](https://jawaker.com/) game.
 
