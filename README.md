@@ -1,5 +1,5 @@
 
-For further information please refer to my [Blog Post](http7://mzmuse.com/blog/jawaker-cards-counter)
+For further information please refer to my [Blog Post](http://mzmuse.com/blog/jawaker-cards-counter)
 
 # Jawaker Cards Counter
 
