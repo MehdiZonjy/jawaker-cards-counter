@@ -1,6 +1,11 @@
 {
   "name": "Jawaker Card Counter",
   "description": "Counts which cards hasn't been played yet in Jawaker Game",
+  "author":"Mehdi Zonjy",
+  "repository":"https://github.com/MehdiZonjy/jawaker-cards-counter",
+  "icons": { "16": "./images/16.png",
+           "48": "./images/48.png",
+          "128": "./images/128.png" },
   "version": "0.5",
   "permissions": [
     "activeTab",
@@ -16,5 +21,6 @@
   "web_accessible_resources": [
     "img/*.png"
   ],
+  "homepage_url":"http://mzmuse.com/blog/jawaker-cards-counter",
   "manifest_version": 2
 }
